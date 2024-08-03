@@ -1,0 +1,39 @@
+version: "3.9"
+
+x-cos-vars: &cos_vars
+  COS_APIKEY: ${COS_APIKEY}
+  COS_ENDPOINT: ${COS_ENDPOINT}
+  COS_BUCKET: ${COS_BUCKET}
+
+x-garasign-vars: &garasign_vars
+  GARASIGN_CLIENT: ${GARASIGN_CLIENT}
+  GARASIGN_PASSWORD: ${GARASIGN_PASSWORD}
+  GARASIGN_PFX: ${GARASIGN_PFX}
+  GARASIGN_EAL_CODE_SIGNING_URI: ${GARASIGN_EAL_CODE_SIGNING_URI}
+  GARASIGN_EAL_PUBLIC_KEY_NAME: ${GARASIGN_EAL_PUBLIC_KEY_NAME}
+
+x-registry-vars: &registry-vars
+  REGISTRY_HOST: ${REGISTRY_HOST}
+  REGISTRY_NAMESPACE: ${REGISTRY_NAMESPACE}
+  REGISTRY: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}
+  REGISTRY_USER: ${REGISTRY_USER}
+  REGISTRY_PASSWORD: ${REGISTRY_PASSWORD}
+  REGISTRY_IMAGE_NAME: ${REGISTRY_IMAGE_NAME}
+
+x-travis-vars: &travis_vars
+  TRAVIS_BRANCH: ${TRAVIS_BRANCH}
+  TRAVIS_TAG: ${TRAVIS_TAG}
+
+services:
+  build-and-sign:
+    build:
+      context: .
+      args:
+        <<: [*cos_vars, *garasign_vars]
+    environment:
+      <<: [*registry-vars, *garasign_vars, *travis_vars]
+    volumes:
+      - ./scripts:/app/scripts
+      - ./nodejs-docker-example:/app/nodejs-docker-example
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: "/app/scripts/run.sh"

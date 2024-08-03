@@ -1,0 +1,59 @@
+os: linux
+dist: focal
+sudo: required
+language: generic
+
+services:
+  - docker
+
+stages:
+  - name: build and sign
+
+configs:
+  - &CONFIG
+    - REGISTRY_HOST=docker.io
+    - REGISTRY_USER=${REGISTRY_USER}
+    - REGISTRY_PASSWORD=${REGISTRY_PASSWORD}
+    - REGISTRY_NAMESPACE=${REGISTRY_NAMESPACE}
+    - REGISTRY=${REGISTRY_HOST}/${REGISTRY_NAMESPACE}
+    - REGISTRY_IMAGE_NAME=${REGISTRY_IMAGE_NAME}
+  - &GARASIGN_CONFIG
+    - GARASIGN_CLIENT=${GARASIGN_CLIENT}
+    - GARASIGN_PASSWORD=${GARASIGN_PASSWORD}
+    - GARASIGN_PFX=${GARASIGN_PFX}
+    - GARASIGN_EAL_CODE_SIGNING_URI=${GARASIGN_EAL_CODE_SIGNING_URI}
+    - GARASIGN_EAL_PUBLIC_KEY_NAME=${GARASIGN_EAL_PUBLIC_KEY_NAME}
+  - &COS_CONFIG
+    - COS_APIKEY=${COS_APIKEY}
+    - COS_ENDPOINT=${COS_ENDPOINT}
+    - COS_BUCKET=${COS_BUCKET}
+
+jobs:
+  include:
+    - name: Deploy to Container Registry
+      stage: build and sign
+      env:
+        - DOCKER_BUILDKIT=1
+        - *CONFIG
+        - *GARASIGN_CONFIG
+        - *COS_CONFIG
+      addons:
+        apt:
+          packages:
+            - libpcsclite-dev
+            - jq
+      before_install:
+        - source travis/cosign/fetch_cosign_binary.sh
+        - source travis/cos/fetch_garasign_client.sh
+      install: sudo "$(pwd)/client/setup.sh"
+      before_deploy:
+        - source travis/cosign/before_sign.sh
+      deploy:
+        - provider: script
+          script: bash travis/cosign/sign_and_push_image.sh ${TRAVIS_TAG}
+          on:
+            tags: true
+        - provider: script
+          script: bash travis/cosign/sign_and_push_image.sh ${TRAVIS_BRANCH}-${TRAVIS_COMMIT}
+          on:
+            branch: development

@@ -1,0 +1,7 @@
+assets/credentials.txt
+assets/client_auth*
+assets/client/*
+original_client.tgz
+modified_client.tgz
+
+node_modules

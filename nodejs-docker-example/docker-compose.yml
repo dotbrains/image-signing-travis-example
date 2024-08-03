@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  nodejs-docker-example:
+    build:
+      context: .
+    container_name: nodejs-docker-example
+    hostname: nodejs-docker-example
+    image: nodejs-docker-example:latest
