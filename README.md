@@ -55,31 +55,31 @@ Here is the example [.travis.yml](/.travis.yml) file that contains the **magic ð
 6. When the image signing runs successfully in Travis CI, you should see output similar to the following:
 
  ```bash
-Pushing image docker.io/dotbrains/nodejs-docker-example-nonprod:development-d26c550188e445f522d3157cb8c5b928a70ce8d4
-The push refers to repository [docker.io/dotbrains/nodejs-docker-example-nonprod]
+Pushing image docker.io/smeltery/nodejs-docker-example-nonprod:development-d26c550188e445f522d3157cb8c5b928a70ce8d4
+The push refers to repository [docker.io/smeltery/nodejs-docker-example-nonprod]
 development-d26c550188e445f522d3157cb8c5b928a70ce8d4: digest: sha256:e9179947e9d8cacfbed477f6421c4f20680811bc0cece3636cb153a9b62d8d66 size: 3261
 uri pkcs11:token=Garantir%20Token;slot-id=1;id=%83%ca%73%6c%dd%41%54%1f%42%33%af%74%f5%a1%a6%53%03%d7%29%72;object=EalCodeSigningcert02262023?module-path=/usr/local/lib/Garantir/GRS/libgrsp11.so
 key EalCodeSigningcert02262023
-[2023-04-21T14:56:01Z] - INFO | ==== Exporting public key to "/home/travis/build/dotbrains/nodejs-docker-example/EalCodeSigningcert02262023.pem.pub.key"
+[2023-04-21T14:56:01Z] - INFO | ==== Exporting public key to "/home/travis/build/smeltery/nodejs-docker-example/EalCodeSigningcert02262023.pem.pub.key"
 [2023-04-21T14:56:01Z] - INFO |  - OK
-[2023-04-21T14:56:01Z] - INFO | ==== Exporting leaf certificate to "/home/travis/build/dotbrains/nodejs-docker-example/EalCodeSigningcert02262023.pem.cer"
+[2023-04-21T14:56:01Z] - INFO | ==== Exporting leaf certificate to "/home/travis/build/smeltery/nodejs-docker-example/EalCodeSigningcert02262023.pem.cer"
 [2023-04-21T14:56:01Z] - INFO |  - OK
-[2023-04-21T14:56:01Z] - INFO | ==== Exporting GPG public key to "/home/travis/build/dotbrains/nodejs-docker-example/EalCodeSigningcert02262023.pub.asc"
+[2023-04-21T14:56:01Z] - INFO | ==== Exporting GPG public key to "/home/travis/build/smeltery/nodejs-docker-example/EalCodeSigningcert02262023.pub.asc"
 [2023-04-21T14:56:01Z] - INFO | == Begin GPG output ==
 [2023-04-21T14:56:01Z] - INFO | == End GPG output ==
 [2023-04-21T14:56:01Z] - INFO |  - OK
-[2023-04-21T14:56:01Z] - INFO | ==== Exporting certificate chain to "/home/travis/build/dotbrains/nodejs-docker-example/EalCodeSigningcert02262023.pem.chain"
+[2023-04-21T14:56:01Z] - INFO | ==== Exporting certificate chain to "/home/travis/build/smeltery/nodejs-docker-example/EalCodeSigningcert02262023.pem.chain"
 [2023-04-21T14:56:01Z] - INFO |  - OK
 [2023-04-21T14:56:01Z] - INFO | Command execution succeeded
-digest docker.io/dotbrains/nodejs-docker-example-nonprod@sha256:e9179947e9d8cacfbed477f6421c4f20680811bc0cece3636cb153a9b62d8d66
-Signing image docker.io/dotbrains/nodejs-docker-example-nonprod:development-d26c550188e445f522d3157cb8c5b928a70ce8d4
-Pushing signature to: docker.io/dotbrains/nodejs-docker-example-nonprod
-Verification for docker.io/dotbrains/nodejs-docker-example-nonprod@sha256:e9179947e9d8cacfbed477f6421c4f20680811bc0cece3636cb153a9b62d8d66 --
+digest docker.io/smeltery/nodejs-docker-example-nonprod@sha256:e9179947e9d8cacfbed477f6421c4f20680811bc0cece3636cb153a9b62d8d66
+Signing image docker.io/smeltery/nodejs-docker-example-nonprod:development-d26c550188e445f522d3157cb8c5b928a70ce8d4
+Pushing signature to: docker.io/smeltery/nodejs-docker-example-nonprod
+Verification for docker.io/smeltery/nodejs-docker-example-nonprod@sha256:e9179947e9d8cacfbed477f6421c4f20680811bc0cece3636cb153a9b62d8d66 --
 The following checks were performed on each of these signatures:
 
 - The cosign claims were validated
 - The signatures were verified against the specified public key
-[{"critical":{"identity":{"docker-reference":"docker.io/dotbrains/nodejs-docker-example-nonprod"},"image":{"docker-manifest-digest":"sha256:e9179947e9d8cacfbed477f6421c4f20680811bc0cece3636cb153a9b62d8d66"},"type":"cosign container image signature"},"optional":{"Subject":""}}]
+[{"critical":{"identity":{"docker-reference":"docker.io/smeltery/nodejs-docker-example-nonprod"},"image":{"docker-manifest-digest":"sha256:e9179947e9d8cacfbed477f6421c4f20680811bc0cece3636cb153a9b62d8d66"},"type":"cosign container image signature"},"optional":{"Subject":""}}]
 Done. Your build exited with 0.
  ```
 

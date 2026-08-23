@@ -1,7 +1,7 @@
 {
 	"name": "nodejs-docker-example",
 	"description": "Node JS Docker Buildkite example",
-	"repository": "https://github.com/dotbrains/nodejs-docker-example",
+	"repository": "https://github.com/smeltery/nodejs-docker-example",
 	"license": "MIT",
 	"scripts": {
 		"test": "mocha ./test.js"
